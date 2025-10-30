@@ -26,4 +26,8 @@ public class Product {
         if (!(o instanceof Product product)) return false;
         return Objects.equals(name, product.name);
     }
+    @Override
+    public String toString() {
+        return name + "\t" + price + "byn";
+    }
 }

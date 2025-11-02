@@ -1,8 +1,7 @@
 package leverx.homework.service;
 
-import leverx.homework.dao.BlockingQueueOrderDao;
 import leverx.homework.dao.ConcurHashMapProductDao;
-import leverx.homework.model.Order;
+import leverx.homework.dao.Initializer;
 import leverx.homework.model.Product;
 
 import java.util.concurrent.ConcurrentMap;
@@ -10,25 +9,36 @@ import java.util.concurrent.ConcurrentMap;
 public class Warehouse {
     private final ConcurHashMapProductDao stock = ConcurHashMapProductDao.getInstance();
     private static Warehouse instance;
-    private Warehouse() {}
 
-    public static Warehouse getInstance() {
+    private Warehouse() {
+        Initializer.initialize();
+    }
+
+    public static synchronized Warehouse getInstance() {
         if (instance == null) {
             instance = new Warehouse();
         }
         return instance;
     }
-    public void addProduct(Product product, Integer quantity) {
-        stock.addProduct(product, quantity);
-    }
+
 
     public void reduceStock(Product product, Integer quantity) {
-        stock.reduceStock(product, quantity);
+        synchronized (this) {
+            stock.reduceStock(product, quantity);
+            System.out.println("WAREHOUSE || Reduced " + quantity + " x " + product.getName());
+        }
     }
 
     public ConcurrentMap<Product, Integer> getStock() {
         return stock.getAll();
     }
 
+    public Product getProductByIndex(int index) {
+        return stock.getAll().keySet()
+                .stream()
+                .skip(index - 1)
+                .findFirst()
+                .orElse(null);
+    }
 
 }

@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Currency;
 import java.util.Objects;
 
 @Getter
@@ -26,6 +25,7 @@ public class Product {
         if (!(o instanceof Product product)) return false;
         return Objects.equals(name, product.name);
     }
+
     @Override
     public String toString() {
         return name + "\t" + price + "byn";

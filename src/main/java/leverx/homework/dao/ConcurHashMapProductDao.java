@@ -8,7 +8,7 @@ public class ConcurHashMapProductDao {
     private final ConcurrentHashMap<Product, Integer> products = new ConcurrentHashMap<>();
     private static ConcurHashMapProductDao instance;
 
-    public static ConcurHashMapProductDao getInstance() {
+    public static synchronized ConcurHashMapProductDao getInstance() {
         if (instance == null) {
             instance = new ConcurHashMapProductDao();
         }
@@ -19,19 +19,26 @@ public class ConcurHashMapProductDao {
     }
 
     public void addProduct(Product product, Integer quantity) {
-        products.put(product, quantity);
+        synchronized (this) {
+            products.put(product, quantity);
+            System.out.println("WAREHOUSE || Added " + quantity + " x " + product.getName() + " to warehouse.");
+        }
     }
+
     public ConcurrentHashMap<Product, Integer> getAll() {
         return products;
     }
+
     public void reduceStock(Product product, Integer quantity) {
-        products.computeIfPresent(product, (p, currentQty) -> {
-            int newQty = currentQty - quantity;
-            if (newQty < 0) {
-                System.out.println("⚠️ Недостаточно товара на складе: " + p.getName());
-                return 0;
-            }
-            return newQty;
-        });
+        synchronized (this) {
+            products.computeIfPresent(product, (p, currentQty) -> {
+                int newQty = currentQty - quantity;
+                if (newQty < 0) {
+                    System.out.println("We are out of stock now: " + p.getName());
+                    return 0;
+                }
+                return newQty;
+            });
+        }
     }
 }

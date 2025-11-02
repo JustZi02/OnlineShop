@@ -5,8 +5,7 @@ import leverx.homework.model.Product;
 import java.math.BigDecimal;
 
 public class Initializer {
-    public static void initialize()
-    {
+    public static void initialize() {
         ConcurHashMapProductDao productDao = ConcurHashMapProductDao.getInstance();
         productDao.addProduct(new Product("Laptop", BigDecimal.valueOf(1200)), 20);
         productDao.addProduct(new Product("Tablet", BigDecimal.valueOf(800)), 50);

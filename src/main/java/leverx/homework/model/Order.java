@@ -1,7 +1,6 @@
 package leverx.homework.model;
 
 import leverx.homework.user.Customer;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +19,7 @@ public class Order {
         this.items = items;
         this.status = OrderStatus.PENDING;
     }
+
     public BigDecimal getTotalPrice() {
         return items.entrySet().stream()
                 .map(e -> e.getKey().getPrice().multiply(BigDecimal.valueOf(e.getValue())))

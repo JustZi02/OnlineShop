@@ -6,7 +6,10 @@ import leverx.homework.model.OrderStatus;
 import lombok.Getter;
 
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class CheckOutService {
 

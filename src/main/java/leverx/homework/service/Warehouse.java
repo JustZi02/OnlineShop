@@ -1,7 +1,7 @@
 package leverx.homework.service;
 
 import leverx.homework.dao.ConcurHashMapProductDao;
-import leverx.homework.dao.Initializer;
+import leverx.homework.dao.InitializeProducts;
 import leverx.homework.model.Product;
 
 import java.util.concurrent.ConcurrentMap;
@@ -11,7 +11,7 @@ public class Warehouse {
     private static Warehouse instance;
 
     private Warehouse() {
-        Initializer.initialize();
+        InitializeProducts.initialize();
     }
 
     public static synchronized Warehouse getInstance() {
@@ -38,7 +38,7 @@ public class Warehouse {
                 .stream()
                 .skip(index - 1)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("Product with index " + index + " not found"));
     }
 
 }

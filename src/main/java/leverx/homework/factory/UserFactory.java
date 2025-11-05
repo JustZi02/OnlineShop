@@ -5,11 +5,10 @@ import leverx.homework.user.User;
 import leverx.homework.user.WarehouseWorker;
 
 public class UserFactory {
-    public static User createUser(String type, String name) {
-        return switch (type.toLowerCase()) {
-            case "client" -> new Customer(name);
-            case "worker" -> new WarehouseWorker(name);
-            default -> throw new IllegalArgumentException("Unknown user type: " + type);
+    public static User createUser(UserType type, String name) {
+        return switch (type) {
+            case CLIENT -> new Customer(name);
+            case WORKER -> new WarehouseWorker(name);
         };
     }
 }

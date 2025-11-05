@@ -1,6 +1,7 @@
 package leverx.homework;
 
 import leverx.homework.factory.UserFactory;
+import leverx.homework.factory.UserType;
 import leverx.homework.model.Order;
 import leverx.homework.model.Product;
 import leverx.homework.service.AnalyticsService;
@@ -17,9 +18,12 @@ public class Main {
         Warehouse warehouse = Warehouse.getInstance();
         CheckOutService checkOutService = CheckOutService.getInstance();
 
-        Customer alice = (Customer) UserFactory.createUser("client", "Alice");
-        Customer bob = (Customer) UserFactory.createUser("client", "Bob");
-        Customer charlie = (Customer) UserFactory.createUser("client", "Charlie");
+        Customer alice = (Customer) UserFactory.createUser(
+                UserType.CLIENT,"Alice");
+        Customer bob = (Customer) UserFactory.createUser(
+                UserType.CLIENT, "Bob");
+        Customer charlie = (Customer) UserFactory.createUser(
+                UserType.CLIENT, "Charlie");
 
         Thread t1 = new Thread(() -> {
             Map<Product, Integer> items = new HashMap<>();
@@ -49,10 +53,10 @@ public class Main {
         t2.join();
         t3.join();
 
-        Thread.sleep(5000);
-
         System.out.println("\n=== FINAL WAREHOUSE STATE ===");
-        warehouse.getStock().forEach((p, q) -> System.out.println(p.getName() + " — " + q + " pcs"));
+        warehouse.getStock().forEach((p, q) ->
+                System.out.printf("%s — %d pcs%n", p.getName(), q));
+
 
         checkOutService.shutdown();
 

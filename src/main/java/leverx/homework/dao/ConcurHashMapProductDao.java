@@ -21,8 +21,8 @@ public class ConcurHashMapProductDao {
     public void addProduct(Product product, Integer quantity) {
         synchronized (this) {
             products.put(product, quantity);
-            System.out.println("WAREHOUSE || Added " + quantity + " x " + product.getName() + " to warehouse.");
-        }
+            System.out.printf("WAREHOUSE || Added %s x %s to warehouse%n", quantity, product.getName());
+            }
     }
 
     public ConcurrentHashMap<Product, Integer> getAll() {

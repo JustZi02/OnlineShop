@@ -4,7 +4,7 @@ import leverx.homework.model.Product;
 
 import java.math.BigDecimal;
 
-public class Initializer {
+public class InitializeProducts {
     public static void initialize() {
         ConcurHashMapProductDao productDao = ConcurHashMapProductDao.getInstance();
         productDao.addProduct(new Product("Laptop", BigDecimal.valueOf(1200)), 20);

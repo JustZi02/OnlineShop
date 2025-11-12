@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public class Warehouse {
     private final ConcurHashMapProductDao stock = ConcurHashMapProductDao.getInstance();
+
     private static Warehouse instance;
 
     private Warehouse() {

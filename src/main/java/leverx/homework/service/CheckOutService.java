@@ -5,6 +5,7 @@ import leverx.homework.model.Order;
 import leverx.homework.model.OrderStatus;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -19,6 +20,8 @@ public class CheckOutService {
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
     private static CheckOutService instance;
     private volatile boolean running = true;
+    @Getter
+    private final List<Order> reservedOrders = new ArrayList<>();
 
     private final Warehouse warehouse = Warehouse.getInstance();
 
@@ -31,6 +34,20 @@ public class CheckOutService {
             instance = new CheckOutService();
         }
         return instance;
+    }
+
+    public void reserveOrder(Order order) {
+        synchronized (this) {
+            order.setStatus(OrderStatus.RESERVED);
+            order.getItems().forEach(warehouse::reduceStock);
+            reservedOrders.add(order);
+            System.out.println("RESERVED || Order for " + order.getCustomer().name() +
+                    " reserved successfully (Total: " + order.getTotalPrice() + " BYN)");
+        }
+    }
+
+    public void cancelReservation(Order order) {
+
     }
 
     public void placeOrder(Order order) {

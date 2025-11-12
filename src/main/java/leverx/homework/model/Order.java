@@ -1,6 +1,7 @@
 package leverx.homework.model;
 
 import leverx.homework.user.Customer;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.Map;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class Order {
     private final Customer customer;
     private final Map<Product, Integer> items;

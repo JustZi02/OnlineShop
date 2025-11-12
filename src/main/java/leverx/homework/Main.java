@@ -29,7 +29,8 @@ public class Main {
             Map<Product, Integer> items = new HashMap<>();
             items.put(warehouse.getProductByIndex(1), 1);
             items.put(warehouse.getProductByIndex(3), 2);
-            checkOutService.placeOrder(new Order(alice, items));
+            checkOutService.reserveOrder(new Order(alice, items));
+           // checkOutService.placeOrder(new Order(alice, items));
         }, "AliceThread");
 
         Thread t2 = new Thread(() -> {

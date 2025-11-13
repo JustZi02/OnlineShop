@@ -34,6 +34,10 @@ public class Warehouse {
         return stock.getAll();
     }
 
+    public ConcurHashMapProductDao getStockProduct() {
+        return stock;
+    }
+
     public Product getProductByIndex(int index) {
         return stock.getAll().keySet()
                 .stream()

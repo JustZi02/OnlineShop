@@ -47,7 +47,12 @@ public class CheckOutService {
     }
 
     public void cancelReservation(Order order) {
-
+        synchronized (this) {
+            warehouse.getStockProduct().refillStock(order.getItems());
+            reservedOrders.remove(order);
+            order.setStatus(OrderStatus.CANCELLED);
+            System.out.println("CANCELLED || Reservation for " + order.getCustomer().name() + " cancelled, items returned to stock.");
+        }
     }
 
     public void placeOrder(Order order) {

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="54a6cadf-1ff5-4683-a11a-e63ff8f4bb58" name="Changes" comment="conf for main class added">
+    <list default="true" id="54a6cadf-1ff5-4683-a11a-e63ff8f4bb58" name="Changes" comment="reservation added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/leverx/homework/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/leverx/homework/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/leverx/homework/model/OrderStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/leverx/homework/model/OrderStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/leverx/homework/dao/ConcurHashMapProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/leverx/homework/dao/ConcurHashMapProductDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/leverx/homework/service/CheckOutService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/leverx/homework/service/CheckOutService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/leverx/homework/service/Warehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/leverx/homework/service/Warehouse.java" afterDir="false" />
     </list>
@@ -111,9 +110,26 @@
       <updated>1762356177388</updated>
       <workItem from="1762356179465" duration="667000" />
       <workItem from="1762781698225" duration="2441000" />
-      <workItem from="1762959277731" duration="1565000" />
+      <workItem from="1762959277731" duration="2221000" />
+      <workItem from="1763050936246" duration="765000" />
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="reservation added">
+      <option name="closed" value="true" />
+      <created>1762961004126</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762961004126</updated>
+    </task>
+    <task id="LOCAL-00005" summary="reservation added">
+      <option name="closed" value="true" />
+      <created>1762961046688</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762961046688</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +139,7 @@
     <MESSAGE value="readme added" />
     <MESSAGE value="enum, using of lombok changed" />
     <MESSAGE value="conf for main class added" />
-    <option name="LAST_COMMIT_MESSAGE" value="conf for main class added" />
+    <MESSAGE value="reservation added" />
+    <option name="LAST_COMMIT_MESSAGE" value="reservation added" />
   </component>
 </project>

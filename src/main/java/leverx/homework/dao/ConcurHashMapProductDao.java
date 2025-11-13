@@ -2,6 +2,7 @@ package leverx.homework.dao;
 
 import leverx.homework.model.Product;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConcurHashMapProductDao {
@@ -22,11 +23,20 @@ public class ConcurHashMapProductDao {
         synchronized (this) {
             products.put(product, quantity);
             System.out.printf("WAREHOUSE || Added %s x %s to warehouse%n", quantity, product.getName());
-            }
+        }
     }
 
     public ConcurrentHashMap<Product, Integer> getAll() {
         return products;
+    }
+
+    public void refillStock(Map<Product, Integer> newProducts) {
+        synchronized (this) {
+            newProducts.forEach((product, quantity) ->
+                    products.merge(product, quantity, Integer::sum)
+            );
+            System.out.println("WAREHOUSE || Added batch of products to warehouse");
+        }
     }
 
     public void reduceStock(Product product, Integer quantity) {

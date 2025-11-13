@@ -19,7 +19,7 @@ public class Main {
         CheckOutService checkOutService = CheckOutService.getInstance();
 
         Customer alice = (Customer) UserFactory.createUser(
-                UserType.CLIENT,"Alice");
+                UserType.CLIENT, "Alice");
         Customer bob = (Customer) UserFactory.createUser(
                 UserType.CLIENT, "Bob");
         Customer charlie = (Customer) UserFactory.createUser(
@@ -29,8 +29,9 @@ public class Main {
             Map<Product, Integer> items = new HashMap<>();
             items.put(warehouse.getProductByIndex(1), 1);
             items.put(warehouse.getProductByIndex(3), 2);
-            checkOutService.reserveOrder(new Order(alice, items));
-           // checkOutService.placeOrder(new Order(alice, items));
+            Order order = new Order(alice, items);
+            checkOutService.reserveOrder(order);
+            checkOutService.cancelReservation(order);
         }, "AliceThread");
 
         Thread t2 = new Thread(() -> {
